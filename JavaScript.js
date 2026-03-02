@@ -5,36 +5,36 @@ let dataProduksi = JSON.parse(localStorage.getItem("produksi")) || [];
 
 renderTable();
 
-form.addEventListener("submit", function(e){
-    e.preventDefault();
-    if(!validate()) return;
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  if (!validate()) return;
 
-    const produksi = {
-        komoditas: komoditas.value,
-        estimasi: estimasi.value,
-        kapasitas: kapasitas.value,
-        kualitas: kualitas.value,
-        harga: harga.value
-    };
+  const produksi = {
+    komoditas: komoditas.value,
+    estimasi: estimasi.value,
+    kapasitas: kapasitas.value,
+    kualitas: kualitas.value,
+    harga: harga.value,
+  };
 
-    const editIndex = document.getElementById("editIndex").value;
+  const editIndex = document.getElementById("editIndex").value;
 
-    if(editIndex === ""){
-        dataProduksi.push(produksi);
-    } else {
-        dataProduksi[editIndex] = produksi;
-        document.getElementById("editIndex").value = "";
-    }
+  if (editIndex === "") {
+    dataProduksi.push(produksi);
+  } else {
+    dataProduksi[editIndex] = produksi;
+    document.getElementById("editIndex").value = "";
+  }
 
-    localStorage.setItem("produksi", JSON.stringify(dataProduksi));
-    form.reset();
-    renderTable();
+  localStorage.setItem("produksi", JSON.stringify(dataProduksi));
+  form.reset();
+  renderTable();
 });
 
-function renderTable(){
-    tableBody.innerHTML = "";
-    dataProduksi.forEach((item,index)=>{
-        tableBody.innerHTML += `
+function renderTable() {
+  tableBody.innerHTML = "";
+  dataProduksi.forEach((item, index) => {
+    tableBody.innerHTML += `
         <tr>
             <td>${item.komoditas}</td>
             <td>${item.estimasi}</td>
@@ -47,36 +47,38 @@ function renderTable(){
             </td>
         </tr>
         `;
-    });
+  });
 }
 
-function editData(index){
-    const item = dataProduksi[index];
-    komoditas.value = item.komoditas;
-    estimasi.value = item.estimasi;
-    kapasitas.value = item.kapasitas;
-    kualitas.value = item.kualitas;
-    harga.value = item.harga;
-    document.getElementById("editIndex").value = index;
+function editData(index) {
+  const item = dataProduksi[index];
+  komoditas.value = item.komoditas;
+  estimasi.value = item.estimasi;
+  kapasitas.value = item.kapasitas;
+  kualitas.value = item.kualitas;
+  harga.value = item.harga;
+  document.getElementById("editIndex").value = index;
 }
 
-function deleteData(index){
-    if(confirm("Hapus data produksi?")){
-        dataProduksi.splice(index,1);
-        localStorage.setItem("produksi", JSON.stringify(dataProduksi));
-        renderTable();
+function deleteData(index) {
+  if (confirm("Hapus data produksi?")) {
+    dataProduksi.splice(index, 1);
+    localStorage.setItem("produksi", JSON.stringify(dataProduksi));
+    renderTable();
+  }
+}
+
+function validate() {
+  let valid = true;
+
+  document.querySelectorAll("input[required]").forEach((input) => {
+    if (input.value.trim() === "") {
+      alert(input.previousElementSibling.textContent + " wajib diisi!");
+      input.focus();
+      valid = false;
+      return false;
     }
-}
+  });
 
-function validate(){
-    let valid = true;
-    document.querySelectorAll("input[required]").forEach(input=>{
-        const error = input.nextElementSibling;
-        error.textContent = "";
-        if(input.value.trim() === ""){
-            error.textContent = "Wajib diisi";
-            valid = false;
-        }
-    });
-    return valid;
+  return valid;
 }
