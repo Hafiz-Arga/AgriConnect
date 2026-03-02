@@ -1,78 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>AgriPartner - Dashboard Produksi</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="background"></div>
 
-<div class="background"></div>
-
-<div class="wrapper">
-
-    <!-- FORM PRODUKSI -->
-    <div class="card form-card">
+    <div class="wrapper">
+      <!-- FORM PRODUKSI -->
+      <div class="card form-card">
         <h2>🌾 Input Data Produksi</h2>
 
-        <form id="formProduksi">
-            <input type="hidden" id="editIndex">
+        <form id="formProduksi" novalidate>
+          <input type="hidden" id="editIndex" />
 
-            <div class="input-group">
-                <label>Jenis Komoditas</label>
-                <input type="text" id="komoditas" required>
-                <span class="error"></span>
-            </div>
+          <div class="input-group">
+            <label>Jenis Komoditas</label>
+            <input type="text" id="komoditas" required />
+            <span class="error"></span>
+          </div>
 
-            <div class="input-group">
-                <label>Estimasi Panen</label>
-                <input type="date" id="estimasi" required>
-                <span class="error"></span>
-            </div>
+          <div class="input-group">
+            <label>Estimasi Panen</label>
+            <input type="date" id="estimasi" required />
+            <span class="error"></span>
+          </div>
 
-            <div class="input-group">
-                <label>Kapasitas (kg)</label>
-                <input type="number" id="kapasitas" required>
-                <span class="error"></span>
-            </div>
+          <div class="input-group">
+            <label>Kapasitas (kg)</label>
+            <input type="number" id="kapasitas" required />
+            <span class="error"></span>
+          </div>
 
-            <div class="input-group">
-                <label>Standar Kualitas</label>
-                <input type="text" id="kualitas" required>
-                <span class="error"></span>
-            </div>
+          <div class="input-group">
+            <label>Standar Kualitas</label>
+            <input type="text" id="kualitas" required />
+            <span class="error"></span>
+          </div>
 
-            <div class="input-group">
-                <label>Harga Diharapkan (Rp)</label>
-                <input type="number" id="harga" required>
-                <span class="error"></span>
-            </div>
+          <div class="input-group">
+            <label>Harga Diharapkan (Rp)</label>
+            <input type="number" id="harga" required />
+            <span class="error"></span>
+          </div>
 
-            <button type="submit" class="btn-primary">Simpan</button>
+          <button type="submit" class="btn-primary">Simpan</button>
         </form>
-    </div>
+      </div>
 
-    <!-- MARKETPLACE -->
-    <div class="card table-card">
+      <!-- MARKETPLACE -->
+      <div class="card table-card">
         <h2>📊 Marketplace Supplier</h2>
 
         <table>
-            <thead>
-                <tr>
-                    <th>Komoditas</th>
-                    <th>Estimasi</th>
-                    <th>Kapasitas</th>
-                    <th>Kualitas</th>
-                    <th>Harga</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody"></tbody>
+          <thead>
+            <tr>
+              <th>Komoditas</th>
+              <th>Estimasi</th>
+              <th>Kapasitas</th>
+              <th>Kualitas</th>
+              <th>Harga</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
         </table>
+      </div>
     </div>
-
-</div>
-
 <script src="JavaScript.js"></script>
 </body>
 </html>
